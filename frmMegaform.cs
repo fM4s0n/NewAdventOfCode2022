@@ -44,8 +44,8 @@ namespace aocDay1Again
         {
             Day5 day5 = new();
 
-            LblDay5AnswerPt1.Text = day5.Part1.ToString();
-            LblDay5AnswerPt2.Text = day5.Part2.ToString();
+            LblDay5AnswerPt1.Text = day5.Part1();
+            LblDay5AnswerPt2.Text = day5.Part2();
         }
     }
 }
