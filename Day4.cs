@@ -14,17 +14,20 @@ namespace AdventOfCode2022
         {
             int answer = 0;
 
+            //split input into pairs
             foreach (string pair in puzzleInp.Split("\r\n"))
             {
+                //split pair into individual ranges
                 string elf1 = pair.Split(',')[0];
                 string elf2 = pair.Split(',')[1];
 
+                //get individual ids from range
                 int id1 = int.Parse(elf1.Split('-')[0]);
                 int id2 = int.Parse(elf1.Split('-')[1]);
-
                 int id3 = int.Parse(elf2.Split('-')[0]);
                 int id4 = int.Parse(elf2.Split('-')[1]);
 
+                // elf1 min val needs to be lower than elf 2 min val and elf1 max needs to be larger than elf2 max or vice versa
                 if ((id1 <= id3) && (id2 >= id4) || (id3 <= id1) && (id4 >= id2))
                     answer++;
             }
