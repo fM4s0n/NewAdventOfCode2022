@@ -221,6 +221,7 @@
             this.BtnDay6.TabIndex = 14;
             this.BtnDay6.Text = "Day 6";
             this.BtnDay6.UseVisualStyleBackColor = true;
+            this.BtnDay6.Click += new System.EventHandler(this.BtnDay6_Click);
             // 
             // FrmMegaForm
             // 
