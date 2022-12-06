@@ -45,6 +45,9 @@
             this.LblDay6AnswerPt2 = new System.Windows.Forms.Label();
             this.LblDay6Answerpt1 = new System.Windows.Forms.Label();
             this.BtnDay6 = new System.Windows.Forms.Button();
+            this.LblDay7AnswerPt2 = new System.Windows.Forms.Label();
+            this.LblDay7AnswerPt1 = new System.Windows.Forms.Label();
+            this.BtnDay7 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblDay1
@@ -223,11 +226,45 @@
             this.BtnDay6.UseVisualStyleBackColor = true;
             this.BtnDay6.Click += new System.EventHandler(this.BtnDay6_Click);
             // 
+            // LblDay7AnswerPt2
+            // 
+            this.LblDay7AnswerPt2.AutoSize = true;
+            this.LblDay7AnswerPt2.Location = new System.Drawing.Point(264, 234);
+            this.LblDay7AnswerPt2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblDay7AnswerPt2.Name = "LblDay7AnswerPt2";
+            this.LblDay7AnswerPt2.Size = new System.Drawing.Size(96, 15);
+            this.LblDay7AnswerPt2.TabIndex = 19;
+            this.LblDay7AnswerPt2.Text = "Day 7 answer pt2";
+            // 
+            // LblDay7AnswerPt1
+            // 
+            this.LblDay7AnswerPt1.AutoSize = true;
+            this.LblDay7AnswerPt1.Location = new System.Drawing.Point(108, 234);
+            this.LblDay7AnswerPt1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblDay7AnswerPt1.Name = "LblDay7AnswerPt1";
+            this.LblDay7AnswerPt1.Size = new System.Drawing.Size(96, 15);
+            this.LblDay7AnswerPt1.TabIndex = 18;
+            this.LblDay7AnswerPt1.Text = "Day 7 answer pt1";
+            // 
+            // BtnDay7
+            // 
+            this.BtnDay7.Location = new System.Drawing.Point(10, 229);
+            this.BtnDay7.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnDay7.Name = "BtnDay7";
+            this.BtnDay7.Size = new System.Drawing.Size(79, 20);
+            this.BtnDay7.TabIndex = 17;
+            this.BtnDay7.Text = "Day 7";
+            this.BtnDay7.UseVisualStyleBackColor = true;
+            this.BtnDay7.Click += new System.EventHandler(this.BtnDay7_Click);
+            // 
             // FrmMegaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1554, 680);
+            this.Controls.Add(this.LblDay7AnswerPt2);
+            this.Controls.Add(this.LblDay7AnswerPt1);
+            this.Controls.Add(this.BtnDay7);
             this.Controls.Add(this.LblDay6AnswerPt2);
             this.Controls.Add(this.LblDay6Answerpt1);
             this.Controls.Add(this.BtnDay6);
@@ -272,5 +309,8 @@
         private Label LblDay6AnswerPt2;
         private Label LblDay6Answerpt1;
         private Button BtnDay6;
+        private Label LblDay7AnswerPt2;
+        private Label LblDay7AnswerPt1;
+        private Button BtnDay7;
     }
 }
