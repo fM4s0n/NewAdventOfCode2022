@@ -58,5 +58,12 @@ namespace aocDay1Again
             LblDay7AnswerPt1.Text = day7.Part1().ToString();
             LblDay7AnswerPt2.Text = day7.Part2().ToString();            
         }
+
+        private void BtnDay8_Click(object sender, EventArgs e)
+        {
+            Day8 day8 = new();
+            LblDay8answerPt1.Text = day8.Part1().ToString();
+            LblDay8answerPt2.Text = day8.Part2().ToString();
+        }
     }
 }

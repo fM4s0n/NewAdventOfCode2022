@@ -89,25 +89,27 @@ namespace AdventOfCode2022
 
         private int GetDirectorySizeForPt2(DirectoryData currentDirectory, int amountToDelete)
         {
+            //start with root dir which is large enough
             int currentDirectorySize = currentDirectory.TotalSize;
 
-            //if the current dir has no children return its totalsize as long as it is below 100000
+            //if currentDir DOES NOT have children return Total size as long as it is larger than the min amount and smaller than the current (otherwise we dont care!)
+            //and return as we are at the end of the directory
             if (currentDirectory.Children.Any() == false)
                 return currentDirectory.TotalSize > amountToDelete && currentDirectory.TotalSize < currentDirectorySize ? currentDirectory.TotalSize : currentDirectorySize; ;
 
-            //if current dir total size
+            //if current dir DOES have children - set its Total size to currentDirSize as long as it passes the checks
             if (currentDirectory.TotalSize >= amountToDelete && currentDirectory.TotalSize < currentDirectorySize)
                 currentDirectorySize = currentDirectory.TotalSize;
 
+            //as this dir does hav children we now need to loop through all the children with recursion
             foreach (var d in currentDirectory.Children)
             {
+                // get the value of the smallest child directory 
                 var smallestChildDir = GetDirectorySizeForPt2(d, amountToDelete);
+                // if it passes the checks make it the currentDirSize
                 if (smallestChildDir >= amountToDelete && smallestChildDir < currentDirectorySize)
                     currentDirectorySize = smallestChildDir;
             }
-
-
-
             return currentDirectorySize;
         }
 
@@ -165,6 +167,7 @@ namespace AdventOfCode2022
                 if (int.TryParse(s.Split(' ')[0], out int result))
                     currentDirectory.FilesSize += result;
             }
+            //calc min space needed to be deleted
             int totalStorage = 70000000;
             int spaceRequired = 30000000;
             int totalUsed = rootDirectory.TotalSize;
