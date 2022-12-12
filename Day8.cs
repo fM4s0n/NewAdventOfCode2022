@@ -136,9 +136,9 @@ namespace AdventOfCode2022
 
         public int Part2()
         {
-            string input = testInput;            
-
+            string input = puzzleInput;           
             List<string> trees = new();
+
             List<int> scores = new();
 
             foreach (string line in input.Split("\r\n"))
@@ -148,8 +148,14 @@ namespace AdventOfCode2022
             {
                 for (int c = 0; c < trees.Count; c++)
                 {
-                    currentHighScore = GetScenicScore(trees, c, r) > currentHighScore ? GetScenicScore(trees, c, r) : currentHighScore;                
-                    scores.Add(currentHighScore);
+                    //currentHighScore = GetScenicScore(trees, c, r) > currentHighScore ? GetScenicScore(trees, c, r) : currentHighScore;
+                    int nextScore = GetScenicScore(trees, c, r);
+                    if (nextScore > currentHighScore)
+                    {
+                        currentHighScore = nextScore;
+                        scores.Add(currentHighScore);
+                    }
+
                 }
             }
             return currentHighScore;
@@ -158,62 +164,70 @@ namespace AdventOfCode2022
         private int GetScenicScore(List<string>trees, int col, int row)
         {
             int up = 0, down = 0, left = 0, right = 0;
-            int baseTree = Convert.ToInt32(trees[col][row].ToString());
+            int baseTree = Convert.ToInt32(trees[row][col].ToString());
+
+            if (row == 0 || row == trees.Count - 1 || col == 0 || col == trees[0].Length - 1)
+                return 0;
 
             //up
-            if (row > 0)
+            for (int u = row - 1; u >= 0; u--)
             {
-                int currentHighest = 0;
-                for (int u = row - 1; u >= 0; u--)
+                int checkTree = Convert.ToInt32(trees[u][col].ToString());
+                //if base tree is taller then it can be seen 
+                if (baseTree > checkTree)                    
+                    up++;
+                    
+                //if same height or larger, it can be seen but will now block so we stop
+                if (baseTree <= checkTree)
                 {
-                    if (Convert.ToInt32(trees[u][col].ToString()) <= Convert.ToInt32(trees[u-1][col].ToString()))
-                    {
-                        up++;
-                    }
-                    else
-                        break;
+                    up++;
+                    break;
+                } 
+            }          
+            
+            //down
+            for (int d = row + 1; d < trees.Count; d++)
+            {
+                int checkTree = Convert.ToInt32(trees[d][col].ToString());
+                if (baseTree > checkTree)
+                    down++;
+
+                if (baseTree <= checkTree)
+                {
+                    down++;
+                    break;
                 }
             }
-            else
-                return 0;
-
-            //down
-            if (row < trees.Count - 1)
-                for (int d = row+1; d < trees.Count; d++)
-                {
-                    if (tree <= Convert.ToInt32(trees[d][col].ToString()))
-                        down++;
-                    else
-                        break;
-                }
-            else
-                return 0;   
 
             //left
-            if (col > 0)
-                for (int l = col-1; l >=0; l--)
+            for (int l = col - 1; l >= 0; l--)
+            {
+                int checkTree = Convert.ToInt32(trees[row][l].ToString());
+                if (baseTree > checkTree)
+                    left++;
+
+                if (baseTree <= checkTree)
                 {
-                    if (tree <= Convert.ToInt32(trees[row][l].ToString()))
-                        left++;
-                    else
-                        break;
+                    left++;
+                    break;
                 }
-            else
-                return 0;
+            }
 
             //right
-            if (col > trees[0].Length-1)
-                for (int r = col+1; r < trees.Count; r++)
-                {
-                    if (tree <= Convert.ToInt32(trees[row][r].ToString()))
-                        right++;
-                    else
-                        break;
-                }
-            else
-                return 0;
+            for (int r = col + 1; r < trees.Count; r++)
+            {
+                int checkTree = Convert.ToInt32(trees[row][r].ToString());
+                if (baseTree > checkTree)
+                    right++;
 
-            return up * down * left * right;
+                if (baseTree <= checkTree)
+                {
+                    right++;
+                    break;
+                }
+            }
+            int scenicScore = up * down * left * right;
+            return scenicScore;
         }
     }
 }
